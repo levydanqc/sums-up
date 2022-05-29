@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ThemeData customLightTheme() {
   TextTheme customLightThemesTextTheme(TextTheme base) {
@@ -6,16 +7,16 @@ ThemeData customLightTheme() {
       headline1: base.headline1?.copyWith(
         fontFamily: 'Roboto',
         fontSize: 22.0,
-        color: Colors.green,
+        color: Colors.black,
       ),
       headline6: base.headline6?.copyWith(fontSize: 15.0, color: Colors.orange),
       headline4: base.headline1?.copyWith(
         fontSize: 24.0,
-        color: Colors.white,
+        color: Colors.black,
       ),
       headline3: base.headline1?.copyWith(
         fontSize: 22.0,
-        color: Colors.grey,
+        color: Colors.black,
       ),
       caption: base.caption?.copyWith(
         color: const Color(0xFFCCC5AF),
@@ -26,6 +27,18 @@ ThemeData customLightTheme() {
   }
 
   return ThemeData.light().copyWith(
+    appBarTheme: ThemeData.light().appBarTheme.copyWith(
+          color: Colors.transparent,
+          elevation: 0,
+          iconTheme: ThemeData.light().iconTheme.copyWith(
+                color: Colors.black,
+              ),
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          toolbarTextStyle:
+              customLightThemesTextTheme(ThemeData.light().textTheme).bodyText2,
+          titleTextStyle:
+              customLightThemesTextTheme(ThemeData.light().textTheme).headline6,
+        ),
     textTheme: customLightThemesTextTheme(ThemeData.light().textTheme),
     primaryColor: const Color(0xffce107c),
     indicatorColor: const Color(0xFF807A6B),
@@ -45,7 +58,6 @@ ThemeData customLightTheme() {
     buttonTheme:
         ThemeData.light().buttonTheme.copyWith(buttonColor: Colors.red),
     errorColor: Colors.red,
-    colorScheme:
-        ColorScheme.fromSwatch().copyWith(secondary: const Color(0xFFFFF8E1)),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
   );
 }
