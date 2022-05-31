@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sums_up/themes/constants.dart';
 
 ThemeData customLightTheme() {
   TextTheme customLightThemesTextTheme(TextTheme base) {
@@ -19,7 +20,7 @@ ThemeData customLightTheme() {
         color: Colors.black,
       ),
       caption: base.caption?.copyWith(
-        color: const Color(0xFFCCC5AF),
+        color: grey,
       ),
       bodyText2: base.bodyText2?.copyWith(color: const Color(0xFF807A6B)),
       bodyText1: base.bodyText1?.copyWith(color: Colors.brown),
@@ -28,7 +29,7 @@ ThemeData customLightTheme() {
 
   return ThemeData.light().copyWith(
     appBarTheme: ThemeData.light().appBarTheme.copyWith(
-          color: Colors.transparent,
+          color: Colors.white,
           elevation: 0,
           iconTheme: ThemeData.light().iconTheme.copyWith(
                 color: Colors.black,
@@ -42,7 +43,7 @@ ThemeData customLightTheme() {
     textTheme: customLightThemesTextTheme(ThemeData.light().textTheme),
     primaryColor: const Color(0xffce107c),
     indicatorColor: const Color(0xFF807A6B),
-    scaffoldBackgroundColor: const Color(0xFFF5F5F5),
+    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     primaryIconTheme: ThemeData.light().primaryIconTheme.copyWith(
           color: Colors.white,
           size: 20,

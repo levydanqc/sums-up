@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/budgets/item_budget.dart';
 import '../widgets/header.dart';
 
 class Home extends StatefulWidget {
@@ -17,10 +18,16 @@ class _HomeState extends State<Home> {
       appBar: Header(
         height: const Size.fromHeight(100).height,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(10),
-        child: Center(
-          child: Text(widget.title),
+      body: SafeArea(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return const ItemBudget(
+              title: 'Vacation',
+              count: 3,
+            );
+          },
+          scrollDirection: Axis.vertical,
+          itemCount: 10,
         ),
       ),
     );
