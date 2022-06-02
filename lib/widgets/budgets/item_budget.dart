@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../themes/constants.dart';
+import '../../views/budget.dart';
 
 class ItemBudget extends StatelessWidget {
   const ItemBudget({super.key, required String title, required int count});
@@ -14,7 +15,12 @@ class ItemBudget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Budget(title: 'Vacation')),
+            );
+          },
           child: Container(
             padding: const EdgeInsets.all(15),
             child: Row(

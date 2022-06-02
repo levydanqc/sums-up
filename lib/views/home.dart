@@ -15,9 +15,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
-        height: const Size.fromHeight(100).height,
-      ),
+      appBar: const Header(isAccount: true),
       body: SafeArea(
         child: ListView.builder(
           itemBuilder: (context, index) {

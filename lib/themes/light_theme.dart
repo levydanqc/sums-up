@@ -10,7 +10,7 @@ ThemeData customLightTheme() {
         fontSize: 22.0,
         color: Colors.black,
       ),
-      headline6: base.headline6?.copyWith(fontSize: 15.0, color: Colors.orange),
+      headline6: base.headline6?.copyWith(fontSize: 15.0, color: primary),
       headline4: base.headline1?.copyWith(
         fontSize: 24.0,
         color: Colors.black,
