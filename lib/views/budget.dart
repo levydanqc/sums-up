@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sums_up/widgets/bottom_bar.dart';
 import 'package:sums_up/widgets/header.dart';
 
 class Budget extends StatefulWidget {
@@ -12,6 +13,12 @@ class Budget extends StatefulWidget {
 
 class _BudgetState extends State<Budget> {
   bool isBalance = false;
+
+  toggle() {
+    setState(() {
+      isBalance = !isBalance;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,51 +40,7 @@ class _BudgetState extends State<Budget> {
           child: const Icon(Icons.add),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        //color of the BottomAppBar
-        color: Colors.white,
-        child: Container(
-          margin: const EdgeInsets.only(left: 12.0, right: 12.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isBalance = !isBalance;
-                    });
-                  },
-                  iconSize: 27.0,
-                  icon: Icon(
-                    Icons.money_rounded,
-                    color:
-                        isBalance ? Colors.grey.shade400 : Colors.blue.shade900,
-                  ),
-                ),
-              ),
-              //to leave space in between the bottom app bar items and below the FAB
-              Expanded(
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isBalance = !isBalance;
-                    });
-                  },
-                  iconSize: 27.0,
-                  icon: Icon(
-                    Icons.balance_outlined,
-                    color:
-                        isBalance ? Colors.blue.shade900 : Colors.grey.shade400,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: bottomBar(isBalance, toggle),
     );
   }
 }
