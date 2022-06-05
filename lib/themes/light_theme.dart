@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:sums_up/themes/constants.dart';
 
 ThemeData customLightTheme() {
-  TextTheme customLightThemesTextTheme(TextTheme base) {
+  final base = ThemeData.light().textTheme;
+
+  TextTheme customLightThemesTextTheme() {
     return base.copyWith(
       headline1: base.headline1?.copyWith(
         fontFamily: 'Roboto',
@@ -27,22 +29,23 @@ ThemeData customLightTheme() {
     );
   }
 
-  return ThemeData.light().copyWith(
-    appBarTheme: ThemeData.light().appBarTheme.copyWith(
+  AppBarTheme customAppBarTheme() {
+    return ThemeData.light().appBarTheme.copyWith(
           color: Colors.white,
           elevation: 0,
           iconTheme: ThemeData.light().iconTheme.copyWith(
                 color: Colors.black,
               ),
           systemOverlayStyle: SystemUiOverlayStyle.dark,
-          toolbarTextStyle:
-              customLightThemesTextTheme(ThemeData.light().textTheme).bodyText2,
-          titleTextStyle:
-              customLightThemesTextTheme(ThemeData.light().textTheme).headline6,
-        ),
-    textTheme: customLightThemesTextTheme(ThemeData.light().textTheme),
-    primaryColor: const Color(0xffce107c),
-    indicatorColor: const Color(0xFF807A6B),
+          toolbarTextStyle: customLightThemesTextTheme().bodyText2,
+          titleTextStyle: customLightThemesTextTheme().headline6,
+        );
+  }
+
+  return ThemeData.light().copyWith(
+    appBarTheme: customAppBarTheme(),
+    textTheme: customLightThemesTextTheme(),
+    primaryColor: primary,
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     primaryIconTheme: ThemeData.light().primaryIconTheme.copyWith(
           color: Colors.white,
@@ -59,6 +62,6 @@ ThemeData customLightTheme() {
     buttonTheme:
         ThemeData.light().buttonTheme.copyWith(buttonColor: Colors.red),
     errorColor: Colors.red,
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: secondary),
   );
 }

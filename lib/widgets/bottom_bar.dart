@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-bottomBar(isBalance, Function onTap) {
+bottomBar(isBalance, Function onTap, BuildContext context) {
+  Color selected = Theme.of(context).primaryColor;
+
   return BottomAppBar(
     shape: const CircularNotchedRectangle(),
     //color of the BottomAppBar
@@ -17,7 +19,7 @@ bottomBar(isBalance, Function onTap) {
               iconSize: 27.0,
               icon: Icon(
                 Icons.money_rounded,
-                color: isBalance ? Colors.grey.shade400 : Colors.blue.shade900,
+                color: isBalance ? Colors.grey.shade400 : selected,
               ),
             ),
           ),
@@ -27,7 +29,7 @@ bottomBar(isBalance, Function onTap) {
               iconSize: 27.0,
               icon: Icon(
                 Icons.balance_outlined,
-                color: isBalance ? Colors.blue.shade900 : Colors.grey.shade400,
+                color: isBalance ? selected : Colors.grey.shade400,
               ),
             ),
           ),
