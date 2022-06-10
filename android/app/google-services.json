@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "891507600332",
+    "project_id": "sums-up",
+    "storage_bucket": "sums-up.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891507600332:android:24a6b423215247af9acb69",
+        "android_client_info": {
+          "package_name": "com.example.sums_up"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891507600332-24rbgrmonoti0pt10srqpua7dd7eaq49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3_sezbCzl75_J-7BKn5bdZA7fcsxX0Gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891507600332-24rbgrmonoti0pt10srqpua7dd7eaq49.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "891507600332-q7m78t0910h78hbasq3cjnl69is264fb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sumsUp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
