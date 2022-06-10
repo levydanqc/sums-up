@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../themes/constants.dart';
-import '../../views/budget.dart';
+import '../../views/balance.dart';
 
-class ItemBudget extends StatelessWidget {
-  const ItemBudget({super.key, required String title, required int count});
+class ItemBalance extends StatelessWidget {
+  const ItemBalance({super.key, required String title, required int count});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ItemBudget extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Budget(title: 'Vacation')),
+              MaterialPageRoute(builder: (context) => const Balance(title: 'Vacation')),
             );
           },
           child: Container(

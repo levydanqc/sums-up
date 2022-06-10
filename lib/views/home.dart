@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/budgets/item_budget.dart';
+import '../widgets/balances/item_balance.dart';
 import '../widgets/header.dart';
 
 class Home extends StatefulWidget {
@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return const ItemBudget(
+            return const ItemBalance(
               title: 'Vacation',
               count: 3,
             );
