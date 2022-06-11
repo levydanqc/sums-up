@@ -3,16 +3,16 @@ import 'package:sums_up/widgets/bottom_bar.dart';
 import 'package:sums_up/widgets/fab/expandable_fab.dart';
 import 'package:sums_up/widgets/header.dart';
 
-class Balance extends StatefulWidget {
+class BalanceView extends StatefulWidget {
   final String title;
 
-  const Balance({super.key, required this.title});
+  const BalanceView({super.key, required this.title});
 
   @override
-  State<Balance> createState() => _BalanceState();
+  State<BalanceView> createState() => _BalanceViewState();
 }
 
-class _BalanceState extends State<Balance> {
+class _BalanceViewState extends State<BalanceView> {
   bool isBalance = false;
 
   toggle() {
