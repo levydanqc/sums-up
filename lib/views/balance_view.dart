@@ -15,9 +15,9 @@ class BalanceView extends StatefulWidget {
 class _BalanceViewState extends State<BalanceView> {
   bool isBalance = false;
 
-  toggle() {
+  toggle(String view) {
     setState(() {
-      isBalance = !isBalance;
+      isBalance = view == 'balanceView';
     });
   }
 

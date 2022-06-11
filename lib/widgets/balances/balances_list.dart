@@ -6,16 +6,16 @@ import 'package:sums_up/widgets/balances/balance_list_item.dart';
 import '../../services/firestore/balances_service.dart';
 import '../../services/firestore/users_service.dart';
 
-class BalanceList extends StatefulWidget {
-  const BalanceList({
+class BalancesList extends StatefulWidget {
+  const BalancesList({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<BalanceList> createState() => _BalanceListState();
+  State<BalancesList> createState() => _BalanceListState();
 }
 
-class _BalanceListState extends State<BalanceList> {
+class _BalanceListState extends State<BalancesList> {
   // late var _balances;
   final _usersService = UsersService();
   final _balancesService = BalancesService();

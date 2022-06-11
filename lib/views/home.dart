@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/balances/balance_list.dart';
+import '../widgets/balances/balances_list.dart';
 import '../widgets/header.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
     return const Scaffold(
       appBar: Header(isAccount: true),
       body: SafeArea(
-        child: BalanceList(),
+        child: BalancesList(),
       ),
     );
   }

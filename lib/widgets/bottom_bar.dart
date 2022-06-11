@@ -15,7 +15,7 @@ bottomBar(isBalance, Function onTap, BuildContext context) {
         children: <Widget>[
           Expanded(
             child: IconButton(
-              onPressed: () => onTap(),
+              onPressed: () => onTap('listView'),
               iconSize: 27.0,
               icon: Icon(
                 Icons.money_rounded,
@@ -25,7 +25,7 @@ bottomBar(isBalance, Function onTap, BuildContext context) {
           ),
           Expanded(
             child: IconButton(
-              onPressed: () => onTap(),
+              onPressed: () => onTap('balanceView'),
               iconSize: 27.0,
               icon: Icon(
                 Icons.balance_outlined,
