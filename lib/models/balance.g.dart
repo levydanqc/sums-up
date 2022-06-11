@@ -30,14 +30,14 @@ abstract class BalanceCollectionReference
     DocumentSnapshot<Map<String, Object?>> snapshot,
     SnapshotOptions? options,
   ) {
-    return _$BalanceFromJson(snapshot.data()!);
+    return Balance.fromJson(snapshot.data()!);
   }
 
   static Map<String, Object?> toFirestore(
     Balance value,
     SetOptions? options,
   ) {
-    return _$BalanceToJson(value);
+    return value.toJson();
   }
 
   @override
@@ -121,7 +121,8 @@ abstract class BalanceDocumentReference
 
   Future<void> update({
     String title,
-    List<String> users,
+    List<String> members,
+    int count,
   });
 
   Future<void> set(Balance value);
@@ -167,11 +168,13 @@ class _$BalanceDocumentReference
 
   Future<void> update({
     Object? title = _sentinel,
-    Object? users = _sentinel,
+    Object? members = _sentinel,
+    Object? count = _sentinel,
   }) async {
     final json = {
       if (title != _sentinel) "title": title as String,
-      if (users != _sentinel) "users": users as List<String>,
+      if (members != _sentinel) "members": members as List<String>,
+      if (count != _sentinel) "count": count as int,
     };
 
     return reference.update(json);
@@ -231,7 +234,7 @@ abstract class BalanceQuery implements QueryReference<BalanceQuerySnapshot> {
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
-  BalanceQuery whereUsers({
+  BalanceQuery whereMembers({
     List<String>? isEqualTo,
     List<String>? isNotEqualTo,
     List<String>? isLessThan,
@@ -240,6 +243,17 @@ abstract class BalanceQuery implements QueryReference<BalanceQuerySnapshot> {
     List<String>? isGreaterThanOrEqualTo,
     bool? isNull,
     List<String>? arrayContainsAny,
+  });
+  BalanceQuery whereCount({
+    int? isEqualTo,
+    int? isNotEqualTo,
+    int? isLessThan,
+    int? isLessThanOrEqualTo,
+    int? isGreaterThan,
+    int? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<int>? whereIn,
+    List<int>? whereNotIn,
   });
 
   BalanceQuery orderByTitle({
@@ -254,12 +268,24 @@ abstract class BalanceQuery implements QueryReference<BalanceQuerySnapshot> {
     BalanceDocumentSnapshot? startAfterDocument,
   });
 
-  BalanceQuery orderByUsers({
+  BalanceQuery orderByMembers({
     bool descending = false,
     List<String> startAt,
     List<String> startAfter,
     List<String> endAt,
     List<String> endBefore,
+    BalanceDocumentSnapshot? startAtDocument,
+    BalanceDocumentSnapshot? endAtDocument,
+    BalanceDocumentSnapshot? endBeforeDocument,
+    BalanceDocumentSnapshot? startAfterDocument,
+  });
+
+  BalanceQuery orderByCount({
+    bool descending = false,
+    int startAt,
+    int startAfter,
+    int endAt,
+    int endBefore,
     BalanceDocumentSnapshot? startAtDocument,
     BalanceDocumentSnapshot? endAtDocument,
     BalanceDocumentSnapshot? endBeforeDocument,
@@ -356,7 +382,7 @@ class _$BalanceQuery extends QueryReference<BalanceQuerySnapshot>
     );
   }
 
-  BalanceQuery whereUsers({
+  BalanceQuery whereMembers({
     List<String>? isEqualTo,
     List<String>? isNotEqualTo,
     List<String>? isLessThan,
@@ -368,7 +394,7 @@ class _$BalanceQuery extends QueryReference<BalanceQuerySnapshot>
   }) {
     return _$BalanceQuery(
       reference.where(
-        'users',
+        'members',
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -377,6 +403,34 @@ class _$BalanceQuery extends QueryReference<BalanceQuerySnapshot>
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
         isNull: isNull,
         arrayContainsAny: arrayContainsAny,
+      ),
+      _collection,
+    );
+  }
+
+  BalanceQuery whereCount({
+    int? isEqualTo,
+    int? isNotEqualTo,
+    int? isLessThan,
+    int? isLessThanOrEqualTo,
+    int? isGreaterThan,
+    int? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<int>? whereIn,
+    List<int>? whereNotIn,
+  }) {
+    return _$BalanceQuery(
+      reference.where(
+        'count',
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
       ),
       _collection,
     );
@@ -424,7 +478,7 @@ class _$BalanceQuery extends QueryReference<BalanceQuerySnapshot>
     return _$BalanceQuery(query, _collection);
   }
 
-  BalanceQuery orderByUsers({
+  BalanceQuery orderByMembers({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
@@ -435,7 +489,49 @@ class _$BalanceQuery extends QueryReference<BalanceQuerySnapshot>
     BalanceDocumentSnapshot? endBeforeDocument,
     BalanceDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('users', descending: descending);
+    var query = reference.orderBy('members', descending: descending);
+
+    if (startAtDocument != null) {
+      query = query.startAtDocument(startAtDocument.snapshot);
+    }
+    if (startAfterDocument != null) {
+      query = query.startAfterDocument(startAfterDocument.snapshot);
+    }
+    if (endAtDocument != null) {
+      query = query.endAtDocument(endAtDocument.snapshot);
+    }
+    if (endBeforeDocument != null) {
+      query = query.endBeforeDocument(endBeforeDocument.snapshot);
+    }
+
+    if (startAt != _sentinel) {
+      query = query.startAt([startAt]);
+    }
+    if (startAfter != _sentinel) {
+      query = query.startAfter([startAfter]);
+    }
+    if (endAt != _sentinel) {
+      query = query.endAt([endAt]);
+    }
+    if (endBefore != _sentinel) {
+      query = query.endBefore([endBefore]);
+    }
+
+    return _$BalanceQuery(query, _collection);
+  }
+
+  BalanceQuery orderByCount({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    BalanceDocumentSnapshot? startAtDocument,
+    BalanceDocumentSnapshot? endAtDocument,
+    BalanceDocumentSnapshot? endBeforeDocument,
+    BalanceDocumentSnapshot? startAfterDocument,
+  }) {
+    var query = reference.orderBy('count', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -516,14 +612,11 @@ class BalanceQueryDocumentSnapshot extends FirestoreQueryDocumentSnapshot
 
 Balance _$BalanceFromJson(Map<String, dynamic> json) => Balance(
       title: json['title'] as String,
-      users: (json['users'] as List<dynamic>).map((e) => e as String).toList(),
-      operations: (json['operations'] as List<dynamic>)
-          .map((e) => Operation.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      members:
+          (json['members'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$BalanceToJson(Balance instance) => <String, dynamic>{
       'title': instance.title,
-      'users': instance.users,
-      'operations': instance.operations.map((e) => e.toJson()).toList(),
+      'members': instance.members,
     };

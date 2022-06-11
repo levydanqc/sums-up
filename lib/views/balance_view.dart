@@ -4,9 +4,9 @@ import 'package:sums_up/widgets/fab/expandable_fab.dart';
 import 'package:sums_up/widgets/header.dart';
 
 class BalanceView extends StatefulWidget {
-  final String title;
+  final String id;
 
-  const BalanceView({super.key, required this.title});
+  const BalanceView({super.key, required this.id});
 
   @override
   State<BalanceView> createState() => _BalanceViewState();
@@ -28,7 +28,7 @@ class _BalanceViewState extends State<BalanceView> {
         isBack: true,
       ),
       body: SafeArea(
-        child: Text(widget.title),
+        child: Text(widget.id),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const ExpandableFab(),

@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sums_up/services/firestore/users_service.dart';
+import 'package:sums_up/models/balance.dart';
+import 'package:sums_up/widgets/balances/balance_list_item.dart';
+
+import '../../services/firestore/balances_service.dart';
+import '../../services/firestore/users_service.dart';
 
 class BalanceList extends StatefulWidget {
   const BalanceList({
@@ -14,6 +18,7 @@ class BalanceList extends StatefulWidget {
 class _BalanceListState extends State<BalanceList> {
   // late var _balances;
   final _usersService = UsersService();
+  final _balancesService = BalancesService();
 
   @override
   void initState() {
@@ -29,10 +34,7 @@ class _BalanceListState extends State<BalanceList> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection('users')
-          .doc("EGPJSkPXGEKUqaIufV9s")
-          .snapshots(),
+      stream: _usersService.balanceIdsStream,
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -45,9 +47,25 @@ class _BalanceListState extends State<BalanceList> {
         return ListView(
           children: (snapshot.data!.data() as Map)['balances']
               .map((dynamic document) {
-                return ListTile(
-                  title: Text(document.path),
-                );
+                var stream =
+                    FirebaseFirestore.instance.doc(document.path).snapshots();
+                return StreamBuilder<DocumentSnapshot>(
+                    stream: stream,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<DocumentSnapshot> snap) {
+                      if (snap.hasError) {
+                        return const Text('Something went wrong');
+                      }
+
+                      if (snap.connectionState == ConnectionState.waiting) {
+                        return const Text("Loading");
+                      }
+
+                      Balance balance = Balance.fromJson(
+                          snap.data!.data() as Map<String, dynamic>);
+                      return BalanceListItem(
+                          balance: balance, id: snap.data!.id);
+                    });
               })
               .toList()
               .cast<Widget>(),
