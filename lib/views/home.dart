@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/balances/item_balance.dart';
+import '../widgets/balances/balance_list.dart';
 import '../widgets/header.dart';
 
 class Home extends StatefulWidget {
@@ -14,19 +14,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const Header(isAccount: true),
+    return const Scaffold(
+      appBar: Header(isAccount: true),
       body: SafeArea(
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return const ItemBalance(
-              title: 'Vacation',
-              count: 3,
-            );
-          },
-          scrollDirection: Axis.vertical,
-          itemCount: 10,
-        ),
+        child: BalanceList(),
       ),
     );
   }
