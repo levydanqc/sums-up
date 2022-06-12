@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sums_up/widgets/bottom_bar.dart';
 import 'package:sums_up/widgets/fab/expandable_fab.dart';
 import 'package:sums_up/widgets/header.dart';
-import 'package:sums_up/widgets/operations/operations_list.dart';
+
+import '../widgets/operations/operations_list.dart';
 
 class BalanceView extends StatefulWidget {
   final String id;

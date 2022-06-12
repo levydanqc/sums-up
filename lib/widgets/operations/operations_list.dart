@@ -36,9 +36,8 @@ class _OperationsListState extends State<OperationsList> {
               .map((DocumentSnapshot document) {
                 Operation operation = Operation.fromJson(
                     document.data()! as Map<String, dynamic>);
-                return OperationListItem(operation: operation);
+                return OperationListItem(operation: operation, id: document.id);
               })
-              
               .toList()
               .cast(),
         );
