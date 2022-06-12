@@ -27,7 +27,8 @@ abstract class Operation {
   Operation();
 
   factory Operation.fromJson(Map<String, Object?> json) {
-    switch (json['type']) {
+    OperationTypes type = OperationTypes.values.byName(json['type'] as String);
+    switch (type) {
       case OperationTypes.expense:
         return Expense.fromJson(json);
       case OperationTypes.income:

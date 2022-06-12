@@ -21,27 +21,18 @@ class _BalanceListState extends State<BalancesList> {
   final _balancesService = BalancesService();
 
   @override
-  void initState() {
-    super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   // _balances = FirestoreService().balances;
-    //   for (String id in await UsersService().balanceIds) {
-    //     print(id);
-    //   }
-    // });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
       stream: _usersService.balanceIdsStream,
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
+          // TODO: Handle error
           return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
+          // TODO: Handle loading
           return const Text("Loading");
         }
         return ListView(
@@ -54,10 +45,12 @@ class _BalanceListState extends State<BalancesList> {
                     builder: (BuildContext context,
                         AsyncSnapshot<DocumentSnapshot> snap) {
                       if (snap.hasError) {
+                        // TODO: Handle error
                         return const Text('Something went wrong');
                       }
 
                       if (snap.connectionState == ConnectionState.waiting) {
+                        // TODO: Handle loading
                         return const Text("Loading");
                       }
 

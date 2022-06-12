@@ -1,3 +1,3 @@
 const usersCollectionName = 'users';
 const balancesCollectionName = 'balances';
-const operationsCollectionName = 'balance';
+const operationsCollectionName = 'operations';

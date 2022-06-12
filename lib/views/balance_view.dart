@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sums_up/widgets/bottom_bar.dart';
 import 'package:sums_up/widgets/fab/expandable_fab.dart';
 import 'package:sums_up/widgets/header.dart';
+import 'package:sums_up/widgets/operations/operations_list.dart';
 
 class BalanceView extends StatefulWidget {
   final String id;
@@ -28,24 +29,12 @@ class _BalanceViewState extends State<BalanceView> {
         isBack: true,
       ),
       body: SafeArea(
-        child: Text(widget.id),
+        child:
+            isBalance ? Text(widget.id) : OperationsList(balanceId: widget.id),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const ExpandableFab(),
       bottomNavigationBar: bottomBar(isBalance, toggle, context),
-    );
-  }
-
-  FloatingActionButton newMethod() {
-    return FloatingActionButton(
-      heroTag: widget.key,
-      onPressed: () {},
-      tooltip: "Ajouter un element",
-      elevation: 4.0,
-      child: Container(
-        margin: const EdgeInsets.all(15.0),
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }

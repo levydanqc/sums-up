@@ -12,7 +12,10 @@ class FirestoreService {
       _firestore.collection(usersCollectionName).doc(userId);
 
   CollectionReference get balancesCollection =>
-      userDocument.collection(balancesCollectionName);
+      _firestore.collection(balancesCollectionName);
+
+  CollectionReference get operationsCollection =>
+      _firestore.collection(operationsCollectionName);
 
   // Future<List<Balance>> get balances async {
   //   List<Balance> balances = [];
