@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sums_up/widgets/bottom_bar.dart';
-import 'package:sums_up/widgets/fab/expandable_fab.dart';
 import 'package:sums_up/widgets/header.dart';
 
+import '../widgets/fab/fab_menu.dart';
 import '../widgets/operations/operations_list.dart';
 
 class BalanceView extends StatefulWidget {
@@ -14,12 +14,13 @@ class BalanceView extends StatefulWidget {
   State<BalanceView> createState() => _BalanceViewState();
 }
 
-class _BalanceViewState extends State<BalanceView> {
-  bool isBalance = false;
+class _BalanceViewState extends State<BalanceView>
+    with TickerProviderStateMixin {
+  bool _isBalance = false;
 
   toggle(String view) {
     setState(() {
-      isBalance = view == 'balanceView';
+      _isBalance = view == 'balanceView';
     });
   }
 
@@ -31,11 +32,11 @@ class _BalanceViewState extends State<BalanceView> {
       ),
       body: SafeArea(
         child:
-            isBalance ? Text(widget.id) : OperationsList(balanceId: widget.id),
+            _isBalance ? Text(widget.id) : OperationsList(balanceId: widget.id),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const ExpandableFab(),
-      bottomNavigationBar: bottomBar(isBalance, toggle, context),
+      floatingActionButton: const FabMenu(),
+      bottomNavigationBar: bottomBar(_isBalance, toggle, context),
     );
   }
 }

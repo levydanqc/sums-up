@@ -5,7 +5,8 @@ bottomBar(isBalance, Function onTap, BuildContext context) {
 
   return BottomAppBar(
     shape: const CircularNotchedRectangle(),
-    //color of the BottomAppBar
+    notchMargin: 5.0,
+    elevation: 20.0,
     color: Colors.white,
     child: Container(
       margin: const EdgeInsets.only(left: 12.0, right: 12.0),
